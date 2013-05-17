@@ -31,7 +31,8 @@
           - chmod 777 img
      
      - vi /etc/apache2/sites-enabled/000-default (chnage document root and add one directory  )
-     	 DocumentRoot /home/ubuntu/workspace/aws-studygroup
+     	 <pre><code>
+	 DocumentRoot /home/ubuntu/workspace/aws-studygroup
          <Directory />
          	Options FollowSymLinks
                 AllowOverride None
@@ -43,6 +44,7 @@
                Order allow,deny
                allow from all
          </Directory>
+	</code></pre>
      - service apache2 restart
      - verify
           - http://54.251.253.84/
