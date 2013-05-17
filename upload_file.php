@@ -20,7 +20,7 @@ if ((($_FILES["file"]["type"] == "image/gif")
     echo "Type: " . $_FILES["file"]["type"] . "<br>";
     echo "Size: " . ($_FILES["file"]["size"] / 1024) . " kB<br>";
     echo "Temp file: " . $_FILES["file"]["tmp_name"] . "<br>";
-    $targetFolder = "/home/ubuntu/workspace/studygroup/img/";
+    $targetFolder = "/home/ubuntu/workspace/aws-studygroup/img/";
     $targetFileName = time().".jpg";
       move_uploaded_file($_FILES["file"]["tmp_name"],
       $targetFolder . $targetFileName);
