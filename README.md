@@ -7,3 +7,7 @@ for aws study group
 	People can upload photo to server, store image to EBS not root device
 	Server will response image url right away
 
+2. 2 week
+	People can upload photo to server, store in S3, return CDN URL
+
+
