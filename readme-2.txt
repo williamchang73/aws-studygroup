@@ -26,15 +26,12 @@
 		- cd ~/workspace/aws-studygroup/
 		- git pull
 	- set up your variables
-		- vi upload_file.php
-			- modify to your bucket name
-				- $bucket = "yourbuckname";
-			- modify to your s3 domain
-				- $s3Domain = "XXXX.s3-ap-southeast-1.amazonaws.com";
-    			- $cloudfrontDomain = "d1qjbwzye6rcb4.cloudfront.net";
-    		- modify to your key and secret
-				- $options['key'] = '';
-				- $options['secret'] = ''; 
+		- vi config.php
+			- define("AWS_KEY", "xxx");
+			- define("AWS_SECERT", "xxx");
+			- define("AWS_S3_DOMAIN", "xxx.s3-ap-southeast-1.amazonaws.com");
+			- define("AWS_CLOUDFRONT_DOMAIN", "xxx");
+			- define("AWS_S3_BUCKET", "xxx");
 			- save file
 	- verify
 		- go to http://54.251.253.84/ upload images

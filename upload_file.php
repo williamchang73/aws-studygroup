@@ -1,5 +1,6 @@
 <?php
 require dirname(__FILE__) . "/3rd_party/aws-sdk-php/sdk.class.php";
+require dirname(__FILE__) . "/config.php";
 
 echo "<h1>upload result : </h1>";
 $allowedExts = array(
@@ -36,16 +37,18 @@ if (in_array($extension, $allowedExts)) {
 //save to AWS S3
 function uploadToS3($targetFileName, $filePath)
 {
+
+    var_dump(AWS_KEY, AWS_SECERT);
+
     $options = array();
-    $options['key'] = '';
-    $options['secret'] = ''; 
+    $options['key'] = AWS_KEY;
+    $options['secret'] = AWS_SECERT;
     
     $s3 = new AmazonS3($options);
-    $bucket = "aws-study-group";
-    $exists = $s3->if_bucket_exists($bucket);
+    $exists = $s3->if_bucket_exists(AWS_S3_BUCKET);
     $isUploadS3 = false;
     if ($exists) {
-        $s3->create_object($bucket, "images/".$targetFileName, array('fileUpload' => $filePath, "acl" => AmazonS3::ACL_PUBLIC));
+        $s3->create_object(AWS_S3_BUCKET, "images/".$targetFileName, array('fileUpload' => $filePath, "acl" => AmazonS3::ACL_PUBLIC));
         $file_upload_response = $s3->batch()->send();
         if ($file_upload_response->areOK()) {
             $isUploadS3 = true;
@@ -56,11 +59,8 @@ function uploadToS3($targetFileName, $filePath)
 
 
 function response($targetFileName){
-    $s3Domain = "aws-study-group.s3-ap-southeast-1.amazonaws.com";
-    $cloudfrontDomain = "d1qjbwzye6rcb4.cloudfront.net";
-
-    $s3URL = 'https://'.$s3Domain.'/images/'.$targetFileName;
-    $cloudfrontURL = 'https://'.$cloudfrontDomain.'/images/'.$targetFileName;
+    $s3URL = 'https://'.AWS_S3_DOMAIN.'/images/'.$targetFileName;
+    $cloudfrontURL = 'https://'.AWS_CLOUDFRONT_DOMAIN.'/images/'.$targetFileName;
 
     //show s3
     echo '<br>s3 url : ' . $s3URL;
