@@ -38,8 +38,6 @@ if (in_array($extension, $allowedExts)) {
 function uploadToS3($targetFileName, $filePath)
 {
 
-    var_dump(AWS_KEY, AWS_SECERT);
-
     $options = array();
     $options['key'] = AWS_KEY;
     $options['secret'] = AWS_SECERT;
@@ -53,6 +51,8 @@ function uploadToS3($targetFileName, $filePath)
         if ($file_upload_response->areOK()) {
             $isUploadS3 = true;
         }
+    }else{
+        echo "the bucket is not exist !!";
     }
     return $isUploadS3;
 }
