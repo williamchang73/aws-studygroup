@@ -8,4 +8,7 @@ for aws study group
 
 2. People can upload photo to server, store in S3, return CDN URL
 
+3. Hash Image file, store into RDS, if exist, don’t deploy to S3, just return value
+
+
 
